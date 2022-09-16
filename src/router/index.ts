@@ -8,7 +8,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/Login",
     name: "登录",
-    component:()=> import("../views/Login.vue")
+    component:()=> import("../components/layout/Login.vue")
   },
 ];
 const router = createRouter({
