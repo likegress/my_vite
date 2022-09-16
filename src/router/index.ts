@@ -3,12 +3,17 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    redirect: "/Login",
+    redirect: "/home",
+    children: [],
   },
   {
     path: "/Login",
     name: "登录",
-    component:()=> import("../components/layout/Login.vue")
+    component: () => import("../views/login/Login.vue"),
+  },
+  {
+    path: "/:pathMatch(.*)",
+    component: () => import("../views/PageNotFount.vue"),
   },
 ];
 const router = createRouter({
