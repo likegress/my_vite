@@ -13,7 +13,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/:pathMatch(.*)",
-    component: () => import("../views/exception/PageNotFount.vue"),
+    component: () => import("../views/PageNotFount.vue"),
   },
 ];
 const router = createRouter({
