@@ -1,5 +1,10 @@
 /**
  * 存储setStore
+ * @params 存储localStorage
+ * @params 获取localStorage
+ * @params 删除localStorage
+ * 
+ * 
 */
 export const setStore = (name:string,content:any)=>{
     if(!name)return
