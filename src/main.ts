@@ -5,4 +5,6 @@ import router from "./router"
 import ElmentPlus from "element-plus";
 import "element-plus/dist/index.css";
 const app = createApp(App)
-app.use(router).use(ElmentPlus).mount("#app");
+app.use(router);
+app.use(ElmentPlus);
+app.mount("#app");

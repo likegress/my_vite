@@ -1,7 +1,6 @@
 /**
- * 存储localStorage 
- * 
- */
+ * 存储setStore
+*/
 export const setStore = (name:string,content:any)=>{
     if(!name)return
     if(typeof content !=="string"){

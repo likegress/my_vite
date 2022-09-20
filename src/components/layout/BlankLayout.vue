@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <!-- 给login页面用的 -->
+    <router-view></router-view>
 
-    </div>
 </template>
 
 <script setup lang="ts">

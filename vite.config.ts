@@ -15,7 +15,7 @@ export default ({commond,mode})=>{
      open: true, //自动打开浏览器
      proxy: {
        "/api": {
-         target: loadEnv(mode, process.cwd()).VITE_APP_PORT,
+         target: loadEnv(mode, process.cwd()).VITE_APP_BASE_URL,
          changeOrigin: true, //跨域配置
          rewrite: (path) => path.replace(/^\/api/, ""),
        },
@@ -33,22 +33,26 @@ export default ({commond,mode})=>{
      //导入的路径最后需要加上
      preprocessorOptions: {
        scss: {
-         // additionalData:'@import "@/ass"'
+        //  additionalData: '@import "@/assets/styles/global.scss";',
        },
      },
    },
    //分块打包配置
-   build:{
-    chunkSizeWarningLimit:1500, //分块, 将大块分解成更小的块
-    rollupOptions:{
-      output:{
-        manualChunks(id){
-          if(id.includes('node_modules')){
-            return id.toString().split('node_modules/')[1].split('/')[0].toString();
-          }
-        }
-      }
-    }
-  }
+   build: {
+     chunkSizeWarningLimit: 1500, //分块, 将大块分解成更小的块
+     rollupOptions: {
+       output: {
+         manualChunks(id) {
+           if (id.includes("node_modules")) {
+             return id
+               .toString()
+               .split("node_modules/")[1]
+               .split("/")[0]
+               .toString();
+           }
+         },
+       },
+     },
+   },
  }); 
 }
