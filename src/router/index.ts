@@ -15,11 +15,38 @@ const routes: Array<RouteRecordRaw> = [
           icon: "",
         },
       },
+      {
+        path: "goods",
+        name: "goods",
+        component: () => import("@/views/goods/index.vue"),
+        meta: {
+          title: "商品列表",
+          icon: "",
+        },
+      },
+      {
+        path: "cart",
+        name: "cart",
+        component: () => import("@/views/cart/index.vue"),
+        meta: {
+          title: "购物车",
+          icon: "",
+        },
+      },
+      {
+        path: "order",
+        name: "order",
+        component: () => import("@/views/order/index.vue"),
+        meta: {
+          title: "订单列表",
+          icon: "",
+        },
+      },
     ],
   },
   {
     path: "/login",
-    name: "登录",
+    name: "login",
     component: () => import("../views/login/Login.vue"),
   },
   {

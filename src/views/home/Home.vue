@@ -6,8 +6,9 @@
 import { onMounted, reactive, ref } from "@vue/runtime-core";
 import { homeGoodList } from "../../api/index";
 import { HomeAdsAndGoodsModel} from "@/model/home";
+import { useRouter } from "vue-router";
 let goodList = ref<HomeAdsAndGoodsModel>({});
-
+const router = useRouter();
 const getHomeInfo = async () => {
   const res = await homeGoodList();
   goodList.value = res;
