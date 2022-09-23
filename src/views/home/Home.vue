@@ -1,23 +1,34 @@
 <template>
-  <div class="home">我是home</div>
+  <el-carousel >
+    <el-carousel-item v-for="item in adsList.data" :key="item.id">
+      <el-image :src="item.url"></el-image>
+    </el-carousel-item>
+  </el-carousel>
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive, ref } from "@vue/runtime-core";
-import { homeGoodList } from "../../api/index";
-import { HomeAdsAndGoodsModel} from "@/model/home";
-import { useRouter } from "vue-router";
-let goodList = ref<HomeAdsAndGoodsModel>({});
-const router = useRouter();
+import { onMounted, reactive } from "vue";
+import { homeGoodList } from "../../api";
+import { AdsModel } from "../../model/home";
+
+const adsList = reactive({ data: <AdsModel[]>[] });
+
+// 获取首页数据
 const getHomeInfo = async () => {
   const res = await homeGoodList();
-  goodList.value = res;
-  console.log(goodList);
-  return res;
+  adsList.data = res.ads;
+  console.log("ads");
+  console.log(adsList.data);
+  console.log(res);
 };
+
 onMounted(() => {
   getHomeInfo();
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+/* .el-carousel__container {
+  height: 600px;
+} */
+</style>

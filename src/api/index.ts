@@ -1,7 +1,7 @@
 import { userLogin } from "./user";
 import { homeGoodList } from "./home";
-import { cartList } from "./cart";
+import { cartList, cartRemove } from "./cart";
 
 
 
-export { userLogin, homeGoodList, cartList };
+export { userLogin, homeGoodList, cartList, cartRemove };

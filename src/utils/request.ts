@@ -6,7 +6,7 @@ import { AxiosResponseEx } from "../model/params";
 import { errorCodeType } from "../utils/error-code-type";
 // 显示Loading
 //loading 对象
-//正在请求的数据
+//正在请求的数据,请求计时器
 let requestCount = 0;
 let loading: any = null;
 const startLoading = () => {
@@ -17,16 +17,22 @@ const startLoading = () => {
     spinner?: string;
     customClass?: string;
   }
-  const options: Options = {
-    lock: true,
-    text: "请稍后...",
-    background: "rgba(0,0,0,0.7)",
-  };
-  loading = ElLoading.service({ ...options, fullscreen: true });
+  if (requestCount == 0) {
+    const options: Options = {
+      lock: true,
+      text: "请稍后...",
+      background: "rgba(0,0,0,0.7)",
+    };
+    loading = ElLoading.service({ ...options, fullscreen: true });
+  }
+  requestCount++;
 };
 // 隐藏loading
 const closeLoading = () => {
-  loading.close();
+  requestCount--;
+  if (requestCount == 0) {
+    loading.close();
+  }
 };
 
 const service = axios.create({
@@ -40,6 +46,7 @@ const service = axios.create({
 //响应拦截器
 service.interceptors.request.use(
   (config: AxiosRequestConfig<any>) => {
+    // startLoading();
     const token = getStore("token");
     if (token == null || token == "") {
       router.push("/login");
@@ -86,6 +93,8 @@ service.interceptors.request.use(
 //响应拦截器
 service.interceptors.response.use(
   (res: any) => {
+    //
+    // closeLoading();
     //先取到状态码
     const code = res.status;
     //获取错误信息
@@ -116,7 +125,7 @@ service.interceptors.response.use(
       message = "系统接口" + message.substr(message.length - 3) + "异常";
     }
     ElMessage.error({ message, duration: 5 * 1000 });
-    return Promise.reject(error)
+    return Promise.reject(error);
   }
 );
 export default service;

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <h1 class="footer-container">我是独立的footer组件</h1>
 </template>
 
@@ -13,4 +13,4 @@
   font-size: 20px;
   line-height: 100px;
 }
-</style>
+</style> -->
